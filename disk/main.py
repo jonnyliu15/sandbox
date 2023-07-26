@@ -1,17 +1,17 @@
 class Disk:
     pages: list[bool]
-    pageSize: int
+    page_size: int
     size: int
 
-    def __init__(self, pageSize: int, size: int):
-        self.pageSize = pageSize
+    def __init__(self, page_size: int, size: int):
+        self.page_size = page_size
         self.size = size
 
     def store_page(self, page: str):
         pass
 
-    def read_page(self, pageNum: int):
-        if pageNum > self.size:
-            raise Exception(
-                "Tried to read page num {pageNum} which exceeds max size of {self.size}"
+    def read_page(self, page_num: int):
+        if page_num > self.size:
+            raise OverflowError(
+                "Tried to read page num {page_num} which exceeds max size of {self.size}"
             )

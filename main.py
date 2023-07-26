@@ -15,7 +15,7 @@ config = Config
 
 
 def run(argv: list[str]):
-    print("Starting Database with ")
+    print(argv)
 
 
 if __name__ == "__main__":
