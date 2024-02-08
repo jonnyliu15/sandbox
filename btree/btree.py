@@ -1,5 +1,5 @@
-from btree.uint64 import uint64
 from enum import Enum
+from btree.uint64 import uint64
 
 HEADER = 4
 PAGE_SIZE = 4096
@@ -33,9 +33,9 @@ class BTreeNode:
     def number_of_keys(self) -> int:
         return uint64.from_bytearray(self.data[2:4]).value
 
-    def set_header(self, type: BTreeNodeType, number_of_keys: int) -> None:
+    def set_header(self, node_type: BTreeNodeType, number_of_keys: int) -> None:
         assert number_of_keys >= 0 and number_of_keys <= 65535
-        self.data[0:2] = uint64(type.value).to_bytearray(2)
+        self.data[0:2] = uint64(node_type.value).to_bytearray(2)
         self.data[2:4] = uint64(number_of_keys).to_bytearray(2)
 
     def get_ptr(self, index: int) -> uint64:
@@ -50,7 +50,7 @@ class BTreeNode:
 
     def get_offset(self, index: int) -> int:
         assert index >= 0 and index < self.number_of_keys
-        # the first KV pair is always at position 0, so its offset doesn't need to be stored within the offset list
+        # the first KV is always at position 0, its offset doesn't need to be stored within the list
         if index == 0:
             return 0
         offset_pos = (
