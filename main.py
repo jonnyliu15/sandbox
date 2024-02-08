@@ -11,7 +11,7 @@ class Config:
         self.MODE = configs[configs.index("--mode") + 1]
 
 
-config = Config
+config = Config()
 
 
 def run(argv: list[str]):
