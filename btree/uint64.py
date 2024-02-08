@@ -18,8 +18,8 @@ class uint64:
         self._value = value
 
     @staticmethod
-    def from_bytearray(bytes: bytearray, order=ByteOrder.LITTLE_ENDIAN) -> Self:
-        return uint64(int.from_bytes(bytes, order.value))
+    def from_bytearray(data: bytearray, order=ByteOrder.LITTLE_ENDIAN) -> Self:
+        return uint64(int.from_bytes(data, order.value))
 
     def to_bytearray(self, length: int, order=ByteOrder.LITTLE_ENDIAN) -> bytearray:
         return self._value.to_bytes(length, order.value)
